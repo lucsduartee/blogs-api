@@ -7,26 +7,16 @@ const attributes = {
     allowNull: false,
     primaryKey: true,
   },
-  displayName: {
-    type: DataTypes.STRING,
-  },
-  email: {
-    type: DataTypes.STRING,
-    unique: true,
-  },
-  password: {
-    type: DataTypes.STRING,
-  },
-  image: {
+  name: {
     type: DataTypes.STRING,
   },
 };
 
 module.exports = (sequelize) => {
-  const User = sequelize.define('User', attributes, {
-    tableName: 'Users',
+  const Category = sequelize.define('Category', attributes, {
+    tableName: 'Categories',
     timestamps: false,
   });
 
-  return User;
+  return Category;
 };
