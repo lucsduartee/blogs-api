@@ -17,5 +17,16 @@ module.exports = (sequelize) => {
     timestamps: false,
   });
 
+  PostCategory.associate = (models) => {
+    models.Category.belongsToMany(
+      models.BlogPost,
+      { as: 'blogposts', foreignKey: 'categoryId', otherKey: 'postId', through: PostCategory },
+    );
+    models.BlogPost.belongsToMany(
+      models.Category,
+      { as: 'categories', foreignKey: 'postId', otherKey: 'categoryId', through: PostCategory },
+    );
+  };
+
   return PostCategory;
 };
