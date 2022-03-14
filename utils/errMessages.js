@@ -4,4 +4,6 @@ module.exports = {
   emailRequired: '"email" is required',
   passwordLength: '"password" length must be 6 characters long',
   passwordRequired: '"password" is required',
+  internalServerError: 'Internal Server Error',
+  existentUser: 'User already registered',
 };
