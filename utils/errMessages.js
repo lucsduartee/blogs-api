@@ -8,4 +8,5 @@ module.exports = {
   passwordEmpty: '"password" is not allowed to be empty',
   internalServerError: 'Internal Server Error',
   existentUser: 'User already registered',
+  invalidFields: 'Invalid fields',
 };

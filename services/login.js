@@ -1,6 +1,6 @@
 const { User } = require('../models');
 const { validateLogin } = require('../schemas');
-const { statusCode } = require('../utils');
+const { statusCode, errorsMessages } = require('../utils');
 
 const login = async (loginData) => {
   const { email, password } = loginData;
@@ -17,7 +17,14 @@ const login = async (loginData) => {
     },
   });
 
-  console.log(result);
+  if (!result) {
+    return {
+      code: statusCode.BAD_REQUEST,
+      message: errorsMessages.invalidFields,
+    };
+  }
+
+  return loginData;
 };
 
 module.exports = {

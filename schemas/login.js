@@ -7,8 +7,8 @@ const validateLogin = (loginData) => Joi.object({
     'string.empty': errorsMessages.emailEmpty,
   }),
   password: Joi.string().empty().required().messages({
-    'string.required': errorsMessages.emailRequired,
-    'string.empty': errorsMessages.emailEmpty,
+    'string.required': errorsMessages.passwordRequired,
+    'string.empty': errorsMessages.passwordEmpty,
   }),
 }).validate(loginData);
 
