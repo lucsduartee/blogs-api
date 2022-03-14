@@ -1,9 +1,14 @@
 const { User } = require('../models');
+const { validateLogin } = require('../schemas');
+const { statusCode } = require('../utils');
 
 const login = async (loginData) => {
   const { email, password } = loginData;
+  const { error } = validateLogin(loginData);
 
-  const { error } = 
+  if (error) {
+    return { code: statusCode.BAD_REQUEST, message: error.details[0].message };
+  }
 
   const result = await User.findOne({
     where: {
@@ -12,7 +17,7 @@ const login = async (loginData) => {
     },
   });
 
-  console.log(loginData);
+  console.log(result);
 };
 
 module.exports = {
