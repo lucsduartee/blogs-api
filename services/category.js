@@ -19,6 +19,20 @@ const create = async (category) => {
   }
 };
 
+const getAll = async () => {
+  try {
+    const categories = await Category.findAll();
+    return categories;
+  } catch (error) {
+    console.log(error.message);
+    return {
+      code: statusCode.BAD_REQUEST,
+      message: errorsMessages.internalServerError,
+    };
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };

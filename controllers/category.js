@@ -9,6 +9,15 @@ const create = async (req, res, next) => {
   return res.status(statusCode.CREATED).json(categoryCreated);
 };
 
+const getAll = async (_req, res, next) => {
+  const categories = await category.getAll();
+
+  if (categories.code) return next(categories);
+
+  return res.status(statusCode.OK).json(categories);
+};
+
 module.exports = {
   create,
+  getAll,
 };
