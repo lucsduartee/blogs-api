@@ -57,10 +57,14 @@ const create = async (post, email) => {
 
 const getAll = async () => {
   try {
-    const posts = await BlogPost.findAll();
+    const posts = await BlogPost.findAll({
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
+    });
     return posts;
   } catch (err) {
-    console.log(err.message);
     return {
       code: statusCode.INTERNAL_SERVER_ERROR,
       message: errorsMessages.internalServerError, 
