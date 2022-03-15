@@ -2,6 +2,7 @@ const { BlogPost, Category, User } = require('../models');
 const { validatePost } = require('../schemas');
 const { statusCode, errorsMessages } = require('../utils');
 
+/* https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise */
 const verifyCategoriesIds = async (categoriesId) => {
   const idsPromise = categoriesId.map(async (id) => Category.findByPk(id));
   const ids = await Promise.all(idsPromise);

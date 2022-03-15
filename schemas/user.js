@@ -1,6 +1,10 @@
 const Joi = require('joi');
 const { errorsMessages } = require('../utils');
 
+/* https://github.com/sideway/joi/blob/v17.4.0/API.md#list-of-errors */
+/* https://stackoverflow.com/questions/63584205/how-to-set-custom-message-for-regex-in-joi */
+/* https://www.horadecodar.com.br/2020/09/07/expressao-regular-para-validar-e-mail-javascript-regex/ */
+
 const validateUser = (user) => Joi.object({
   displayName: Joi.string().min(8).required().messages({
     'string.min': errorsMessages.displayNameLength,
