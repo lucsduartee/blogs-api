@@ -11,4 +11,5 @@ module.exports = {
   invalidFields: 'Invalid fields',
   tknNotFound: 'Token not found',
   expiredOrInvalidTkn: 'Expired or invalid token',
+  userNotFound: 'User does not exist',
 };

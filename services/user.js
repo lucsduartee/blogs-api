@@ -32,7 +32,22 @@ const getAll = async () => {
   }
 };
 
+const getById = async (id) => {
+  try {
+    const user = await User.findByPk(id);
+    if (!user) return { code: statusCode.NOT_FOUND, message: errorsMessages.userNotFound };
+    return user;
+  } catch (error) {
+    console.log(error.message);
+    return {
+      code: statusCode.BAD_REQUEST,
+      message: errorsMessages.internalServerError,
+    };
+  }
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
 };

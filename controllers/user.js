@@ -25,7 +25,15 @@ const getAll = async (req, res, next) => {
   return res.status(statusCode.OK).json(allUsers);
 };
 
+const getById = async (req, res, next) => {
+  const foundUser = await user.getById(req.params.id);
+  if (foundUser.code) return next(foundUser);
+
+  return res.status(statusCode.OK).json(foundUser);
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
 };
