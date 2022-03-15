@@ -9,4 +9,6 @@ module.exports = {
   internalServerError: 'Internal Server Error',
   existentUser: 'User already registered',
   invalidFields: 'Invalid fields',
+  tknNotFound: 'Token not found',
+  expiredOrInvalidTkn: 'Expired or invalid token',
 };

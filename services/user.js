@@ -1,6 +1,6 @@
 const { User } = require('../models');
 const validations = require('../schemas');
-const { statusCode } = require('../utils');
+const { statusCode, errorsMessages } = require('../utils');
 
 const create = async (user) => {
   const { error } = validations.validateUser(user);
@@ -19,6 +19,20 @@ const create = async (user) => {
   }
 };
 
+const getAll = async () => {
+  try {
+    const allUsers = await User.findAll();
+    return allUsers;
+  } catch (error) {
+    console.log(error.message);
+    return {
+      code: statusCode.BAD_REQUEST,
+      message: errorsMessages.internalServerError,
+    };
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };
