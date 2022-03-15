@@ -15,13 +15,11 @@ module.exports = {
       content: {
         type: Sequelize.STRING,
       },
-      createdAt: {
+      published: {
         type: Sequelize.DATE,
-        field: 'published',
       },
-      updatedAt: {
+      updated: {
         type: Sequelize.DATE,
-        field: 'updated',
       },
       userId: {
         type: Sequelize.INTEGER,

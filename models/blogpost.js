@@ -13,13 +13,11 @@ const attributes = {
   content: {
     type: DataTypes.STRING,
   },
-  createdAt: {
+  published: {
     type: DataTypes.DATE,
-    field: 'published',
   },
-  updatedAt: {
+  updated: {
     type: DataTypes.DATE,
-    field: 'updated',
   },
   userId: {
     type: DataTypes.INTEGER,
@@ -30,6 +28,7 @@ const attributes = {
 module.exports = (sequelize) => {
   const BlogPost = sequelize.define('BlogPost', attributes, {
     tableName: 'BlogPosts',
+    timestamps: false,
   });
 
   BlogPost.associate = (models) => {

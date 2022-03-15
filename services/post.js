@@ -55,6 +55,20 @@ const create = async (post, email) => {
   }
 };
 
+const getAll = async () => {
+  try {
+    const posts = await BlogPost.findAll();
+    return posts;
+  } catch (err) {
+    console.log(err.message);
+    return {
+      code: statusCode.INTERNAL_SERVER_ERROR,
+      message: errorsMessages.internalServerError, 
+    };
+  }
+};
+
 module.exports = {
   create,
+  getAll,
 };
