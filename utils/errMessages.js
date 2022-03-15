@@ -12,4 +12,5 @@ module.exports = {
   tknNotFound: 'Token not found',
   expiredOrInvalidTkn: 'Expired or invalid token',
   userNotFound: 'User does not exist',
+  nameRequired: '"name" is required',
 };

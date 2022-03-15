@@ -26,7 +26,7 @@ const getAll = async () => {
   } catch (error) {
     console.log(error.message);
     return {
-      code: statusCode.BAD_REQUEST,
+      code: statusCode.INTERNAL_SERVER_ERROR,
       message: errorsMessages.internalServerError,
     };
   }
