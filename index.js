@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const {
   userRouter,
   loginRouter,
+  categoriesRouter,
 } = require('./routes');
 const { errorMiddleware } = require('./middlewares');
 
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 
 app.use('/user', userRouter);
 app.use('/login', loginRouter);
+app.use('/categories', categoriesRouter);
 
 app.use(errorMiddleware);
 
