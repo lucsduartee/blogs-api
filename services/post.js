@@ -73,7 +73,27 @@ const getAll = async () => {
   }
 };
 
+const getById = async (id) => {
+  try {
+    const post = await BlogPost.findOne({
+      where: { id },
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
+    });
+    if (!post) return { code: statusCode.NOT_FOUND, message: errorsMessages.postNotFound };
+    return post;
+  } catch (err) {
+    return {
+      code: statusCode.INTERNAL_SERVER_ERROR,
+      message: errorsMessages.internalServerError, 
+    };
+  }
+};
+
 module.exports = {
   create,
   getAll,
+  getById,
 };

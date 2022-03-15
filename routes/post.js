@@ -7,5 +7,6 @@ const route = express.Router();
 route.use(authMiddleware);
 route.post('/', post.create);
 route.get('/', post.getAll);
+route.get('/:id', post.getById);
 
 module.exports = route;
