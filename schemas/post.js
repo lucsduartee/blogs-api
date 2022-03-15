@@ -8,8 +8,8 @@ const validatePost = (post) => Joi.object({
   content: Joi.string().required().messages({
     'string.required': errorsMessages.contentRequired, 
   }),
-  categoryIds: Joi.string().required().messages({
-    'string.required': errorsMessages.categoryIdsRequired, 
+  categoryIds: Joi.array().required().messages({
+    'any.required': errorsMessages.categoryIdsRequired, 
   }),
 }).validate(post);
 

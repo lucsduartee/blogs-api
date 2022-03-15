@@ -1,10 +1,10 @@
-const { BlogPost, Category } = require('../models');
+const { BlogPost, Category, User } = require('../models');
 const { validatePost } = require('../schemas');
 const { statusCode, errorsMessages } = require('../utils');
 
-const verifyCategoriesIds = (categoriesId) => {
+const verifyCategoriesIds = async (categoriesId) => {
   const idsPromise = categoriesId.map(async (id) => Category.findByPk(id));
-  const ids = Promise.all(idsPromise);
+  const ids = await Promise.all(idsPromise);
   const isInexistentCategory = ids.some((id) => id === null);
 
   if (isInexistentCategory) {
@@ -15,16 +15,36 @@ const verifyCategoriesIds = (categoriesId) => {
   }
 };
 
-const create = async (post) => {
+const findByEmail = async (email) => {
+  try {
+    const id = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    return id.dataValues.id;
+  } catch (err) {
+    return {
+      code: statusCode.NOT_FOUND,
+      message: errorsMessages.internalServerError,
+    };
+  }
+};
+
+const create = async (post, email) => {
   const { error } = validatePost(post);
-  
+  const { title, content } = post;
   if (error) return { code: statusCode.BAD_REQUEST, message: error.details[0].message };
   
-  verifyCategoriesIds(post.categoriesId);
+  const validCategoyIds = await verifyCategoriesIds(post.categoryIds);
+  
+  if (validCategoyIds) {
+    return verifyCategoriesIds(post.categoryIds);
+  }
 
   try {
-    const postCreated = await BlogPost.create(post);
-    console.log(postCreated);
+    const userId = await findByEmail(email);
+    const postCreated = await BlogPost.create({ userId, title, content });
     return postCreated;
   } catch (err) {
     console.log(err.message);

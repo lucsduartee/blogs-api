@@ -18,7 +18,7 @@ module.exports = async (req, _res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.tknDecoded = decoded.padStart;
+    req.tknDecoded = decoded;
     next();
   } catch (error) {
     console.log(error.message);
